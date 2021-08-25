@@ -8,9 +8,24 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app"></div>
+<header>
+    <div class="container">
+        <a href="#">header</a>
+        <div class="account">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </div>
+</header>
+<div class="content">
+    <div class="container">
+        <div id="app"></div>
+    </div>
+</div>
+<footer></footer>
 </body>
 </html>

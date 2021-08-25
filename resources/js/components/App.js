@@ -1,23 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
-function App() {
-    return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Example Component</div>
 
-                        <div className="card-body">I'm an example component!</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+export default class App extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        date: new Date(),
+        //月のデータ
+        month_days: {
+          20210814: { text: 'ドライブ' },
+          20210817: { text: 'バイト' },
+          20210820: { text: 'バイト' },
+          20210827: { text: 'テスト'}
+        }
+      };
+      this.getTileClass = this.getTileClass.bind(this);
+      this.getTileContent = this.getTileContent.bind(this);
+    }
+  
+    // state の日付と同じ表記に変換
+    getFormatDate(date) {
+      return `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`;
+    }
+  
+    //日付のクラスを付与 (祝日用)
+    getTileClass({ date, view }) {
+      // 月表示のときのみ
+      if (view !== 'month') {
+        return '';
+      }
+      const day = this.getFormatDate(date);
+      return (this.state.month_days[day] && this.state.month_days[day].is_holiday) ?
+        'holiday' : '';
+    }
+  
+    //日付の内容を出力
+    getTileContent({ date, view }) {
+      // 月表示のときのみ
+      if (view !== 'month') {
+        return null;
+      }
+      const day = this.getFormatDate(date);
+      return (
+        <p>
+          <br />
+          {(this.state.month_days[day] && this.state.month_days[day].text) ?
+            this.state.month_days[day].text : ' '
+          }
+        </p>
+      );
+    }
+  
+    render() {
+      return (
+        <Calendar
+          locale="ja-JP"
+          value={this.state.date}
+          tileClassName={this.getTileClass}
+          tileContent={this.getTileContent}
+        />
+      );
+    }
 }
 
-export default App;
 
 if (document.getElementById('app')) {
     ReactDOM.render(<App />, document.getElementById('app'));

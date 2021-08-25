@@ -1,0 +1,16 @@
+header {
+  background-color: aqua;
+  height: 100px;
+  position: fixed;
+}
+
+footer {
+  height: 20px;
+  background-color: aqua;
+}
+
+.container {
+  max-width: 800px;
+}
+
+
