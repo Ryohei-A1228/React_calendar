@@ -14,12 +14,12 @@ const styles = {
     },
   };
 
+
   Modal.setAppElement('#app');
 
 function App() {
     let subtitle;
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-  
+    const [modalIsOpen, setIsOpen] = React.useState(false);  
     function openModal() {
       setIsOpen(true);
     }

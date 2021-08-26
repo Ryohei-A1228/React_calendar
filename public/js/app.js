@@ -2377,16 +2377,24 @@ var App = /*#__PURE__*/function (_React$Component) {
       //月のデータ
       month_days: {
         20210814: {
-          text: 'ドライブ'
+          name: 'abe',
+          text: 'ドライブ',
+          time: '14'
         },
         20210817: {
-          text: 'バイト'
+          name: 'abe',
+          text: 'バイト',
+          time: '19'
         },
         20210820: {
-          text: 'バイト'
+          name: 'tom',
+          text: 'バイト',
+          time: '19'
         },
         20210827: {
-          text: 'テスト'
+          name: 'kazuki',
+          text: 'テスト',
+          time: '12'
         }
       }
     };
@@ -2430,7 +2438,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       var day = this.getFormatDate(date);
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), this.state.month_days[day] && this.state.month_days[day].text ? this.state.month_days[day].text : ' ']
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), this.state.month_days[day] && this.state.month_days[day].text ? this.state.month_days[day].name + ' ' + this.state.month_days[day].text + ' ' + this.state.month_days[day].time : ' ']
       });
     }
   }, {
