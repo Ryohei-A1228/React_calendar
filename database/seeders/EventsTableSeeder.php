@@ -18,17 +18,20 @@ class EventsTableSeeder extends Seeder
             [
                 'user_id' => 1,
                 'title' => 'バイト',
-                'dateTime' => '2021-9-11 14:00:00'
+                'date' => '2021-9-11',
+                'time' => 17
             ],
             [
                 'user_id' => 2,
                 'title' => 'ドライブ',
-                'dateTime' => '2021-9-24 14:00:00'
+                'date' => '2021-9-24',
+                'time' => 14
             ],
             [
                 'user_id' => 1,
                 'title' => '飲み会',
-                'dateTime' => '2021-9-22 17:00:00'
+                'date' => '2021-9-22',
+                'time' => 17
             ],
         ];
 

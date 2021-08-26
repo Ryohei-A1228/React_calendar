@@ -11,10 +11,10 @@ export default class App extends React.Component {
         date: new Date(),
         //月のデータ
         month_days: {
-          20210814: { text: 'ドライブ' },
-          20210817: { text: 'バイト' },
-          20210820: { text: 'バイト' },
-          20210827: { text: 'テスト'}
+          20210814: { name: 'abe', text: 'ドライブ', time: '14'},
+          20210817: { name: 'abe', text: 'バイト', time: '19' },
+          20210820: { name: 'tom', text: 'バイト', time: '19' },
+          20210827: { name: 'kazuki', text: 'テスト', time: '12'}
         }
       };
       this.getTileClass = this.getTileClass.bind(this);
@@ -48,7 +48,7 @@ export default class App extends React.Component {
         <p>
           <br />
           {(this.state.month_days[day] && this.state.month_days[day].text) ?
-            this.state.month_days[day].text : ' '
+            this.state.month_days[day].name+' '+this.state.month_days[day].text+' '+this.state.month_days[day].time : ' '
           }
         </p>
       );
