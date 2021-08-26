@@ -1,72 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Calendar from 'react-calendar';
+import Calendar from 'react-calendar'
+import Modal from 'react-modal';
+import Infomation from './Infomation';
 import 'react-calendar/dist/Calendar.css';
 
+const styles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
 
-export default class App extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        date: new Date(),
-        //月のデータ
-        month_days: {
-          20210814: { name: 'abe', text: 'ドライブ', time: '14'},
-          20210817: { name: 'abe', text: 'バイト', time: '19' },
-          20210820: { name: 'tom', text: 'バイト', time: '19' },
-          20210827: { name: 'kazuki', text: 'テスト', time: '12'}
-        }
-      };
-      this.getTileClass = this.getTileClass.bind(this);
-      this.getTileContent = this.getTileContent.bind(this);
+
+  Modal.setAppElement('#app');
+
+function App() {
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false);  
+    function openModal() {
+      setIsOpen(true);
     }
   
-    // state の日付と同じ表記に変換
-    getFormatDate(date) {
-      return `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`;
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      subtitle.style.color = '#f00';
     }
   
-    //日付のクラスを付与 (祝日用)
-    getTileClass({ date, view }) {
-      // 月表示のときのみ
-      if (view !== 'month') {
-        return '';
-      }
-      const day = this.getFormatDate(date);
-      return (this.state.month_days[day] && this.state.month_days[day].is_holiday) ?
-        'holiday' : '';
+    function closeModal() {
+      setIsOpen(false);
     }
-  
-    //日付の内容を出力
-    getTileContent({ date, view }) {
-      // 月表示のときのみ
-      if (view !== 'month') {
-        return null;
-      }
-      const day = this.getFormatDate(date);
-      return (
-        <p>
-          <br />
-          {(this.state.month_days[day] && this.state.month_days[day].text) ?
-            this.state.month_days[day].name+' '+this.state.month_days[day].text+' '+this.state.month_days[day].time : ' '
-          }
-        </p>
-      );
-    }
-  
-    render() {
-      return (
-        <Calendar
-          locale="ja-JP"
-          value={this.state.date}
-          tileClassName={this.getTileClass}
-          tileContent={this.getTileContent}
-        />
-      );
-    }
+
+
+    const [value, onChange] = useState(new Date());
+
+    return (
+        <div>
+            <div className="container">
+                <div className="m-auto">
+                    <Calendar 
+                        onChange={onChange}
+                        value={value}
+                    />
+
+                </div>
+                <button onClick={openModal}>Open Modal</button>
+                <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={styles}
+                contentLabel="Example Modal"
+                >
+                    <Infomation></Infomation>
+                    
+                </Modal>
+            </div>
+            
+        </div>
+    );
 }
 
+
+export default App;
 
 if (document.getElementById('app')) {
     ReactDOM.render(<App />, document.getElementById('app'));
 }
+
