@@ -23,5 +23,9 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
+    },
+    "dependencies": {
+        "react-calendar": "^3.4.0",
+        "react-modal": "^3.14.3"
     }
 }
