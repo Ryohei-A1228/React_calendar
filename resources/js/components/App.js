@@ -1,3 +1,5 @@
+import React, { useState }  from 'react';
+import ReactDOM from 'react-dom';
 import Calendar from 'react-calendar'
 import Modal from 'react-modal';
 import Infomation from './Infomation';
@@ -15,11 +17,12 @@ const styles = {
   };
 
 
-  Modal.setAppElement('#app');
+Modal.setAppElement('#app');
 
 function App() {
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);  
+
     function openModal() {
       setIsOpen(true);
     }
@@ -33,28 +36,37 @@ function App() {
       setIsOpen(false);
     }
 
-
     const [value, onChange] = useState(new Date());
+
+    function openModalDay() {
+        setIsOpen(true);
+        let text = document.getElementsByClassName('react-calendar__tile--rangeStart').innerHTML;
+        alert(text);
+    }
 
     return (
         <div>
             <div className="container">
                 <div className="m-auto">
                     <Calendar 
-                        onChange={onChange}
-                        value={value}
+                    onChange={onChange}
+                    value={value}
+                    onClickDay={openModalDay}
                     />
 
                 </div>
                 <button onClick={openModal}>Open Modal</button>
                 <Modal
+                onChange={onChange}
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
-                style={styles}
+                style={styles.content}
                 contentLabel="Example Modal"
                 >
-                    <Infomation></Infomation>
+                    <Infomation 
+                    onChange={onChange}
+                    />
                     
                 </Modal>
             </div>

@@ -29,6 +29,5 @@
         "date-fns": "^2.23.0",
         "react-calendar": "^3.4.0",
         "react-modal": "^3.14.3"
-
     }
 }
