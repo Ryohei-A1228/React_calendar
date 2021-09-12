@@ -7,15 +7,43 @@ import 'react-calendar/dist/Calendar.css';
 
 const styles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+        minWidth: '300px',
+        width: '50%',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'translate(-50%, -50%)',
     },
-  };
+};
 
+var events = [
+    {
+        name: 'トム',
+        title: 'バイト',
+        date: '20210911',
+        time: '17'
+    },
+    {
+        name: 'マイク',
+        title: 'ドライブ',
+        date: '20210924',
+        time: '14'
+    },
+    {
+        name: 'トム',
+        title: '飲み会',
+        date: '20210922',
+        time: '17'
+    },
+    {
+        name: 'ジェシー',
+        title: '飲み会',
+        date: '20210922',
+        time: '17'
+    }
+];
 
 Modal.setAppElement('#app');
 
@@ -38,11 +66,26 @@ function App() {
 
     const [value, onChange] = useState(new Date());
 
-    function openModalDay() {
-        setIsOpen(true);
-        let text = document.getElementsByClassName('react-calendar__tile--rangeStart').innerHTML;
-        alert(text);
-    }
+    var info_date = value.getFullYear()+'-'+('0' + (value.getMonth() + 1)).slice(-2)+'-'+('0' + value.getDate()).slice(-2);
+
+    const getFormatDate = (date) => {
+        return `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`;
+    };
+
+    var value_day = getFormatDate(value);
+
+    const getTileContent = (props) => {
+        if (props.view !== "month") {
+          return null;
+        }
+        const day = getFormatDate(props.date);
+        return (
+          <p >
+            <br />
+            { events.map((val) => (day === val.date) ? val.name+' ' : '') }
+          </p>
+        );
+    };
 
     return (
         <div>
@@ -51,7 +94,8 @@ function App() {
                     <Calendar 
                     onChange={onChange}
                     value={value}
-                    onClickDay={openModalDay}
+                    onClickDay={openModal}
+                    tileContent={getTileContent}
                     />
 
                 </div>
@@ -61,11 +105,14 @@ function App() {
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
-                style={styles.content}
+                style={styles}
                 contentLabel="Example Modal"
                 >
-                    <Infomation 
-                    onChange={onChange}
+                    
+                    <Infomation
+                    date={info_date}
+                    value_day={value_day}
+                    data={events}
                     />
                     
                 </Modal>

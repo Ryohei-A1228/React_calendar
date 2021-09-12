@@ -1,16 +1,9 @@
-header {
-  background-color: aqua;
-  height: 100px;
-  position: fixed;
-}
-
-footer {
-  height: 20px;
-  background-color: aqua;
-}
-
 .container {
+  position: relative;
   max-width: 800px;
 }
 
+html {
+  font-family: 'Lato', sans-serif;
+}
 

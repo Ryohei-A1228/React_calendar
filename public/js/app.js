@@ -2357,14 +2357,37 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var styles = {
   content: {
+    minWidth: '300px',
+    width: '50%',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    marginRight: '-50%',
     transform: 'translate(-50%, -50%)'
   }
 };
+var events = [{
+  name: 'トム',
+  title: 'バイト',
+  date: '20210911',
+  time: '17'
+}, {
+  name: 'マイク',
+  title: 'ドライブ',
+  date: '20210924',
+  time: '14'
+}, {
+  name: 'トム',
+  title: '飲み会',
+  date: '20210922',
+  time: '17'
+}, {
+  name: 'ジェシー',
+  title: '飲み会',
+  date: '20210922',
+  time: '17'
+}];
 react_modal__WEBPACK_IMPORTED_MODULE_2___default().setAppElement('#app');
 
 function App() {
@@ -2393,11 +2416,26 @@ function App() {
       value = _useState2[0],
       onChange = _useState2[1];
 
-  function openModalDay() {
-    setIsOpen(true);
-    var text = document.getElementsByClassName('react-calendar__tile--rangeStart').innerHTML;
-    alert(text);
-  }
+  var info_date = value.getFullYear() + '-' + ('0' + (value.getMonth() + 1)).slice(-2) + '-' + ('0' + value.getDate()).slice(-2);
+
+  var getFormatDate = function getFormatDate(date) {
+    return "".concat(date.getFullYear()).concat(('0' + (date.getMonth() + 1)).slice(-2)).concat(('0' + date.getDate()).slice(-2));
+  };
+
+  var value_day = getFormatDate(value);
+
+  var getTileContent = function getTileContent(props) {
+    if (props.view !== "month") {
+      return null;
+    }
+
+    var day = getFormatDate(props.date);
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), events.map(function (val) {
+        return day === val.date ? val.name + ' ' : '';
+      })]
+    });
+  };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -2407,7 +2445,8 @@ function App() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_calendar__WEBPACK_IMPORTED_MODULE_6__.default, {
           onChange: onChange,
           value: value,
-          onClickDay: openModalDay
+          onClickDay: openModal,
+          tileContent: getTileContent
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
         onClick: openModal,
@@ -2417,10 +2456,12 @@ function App() {
         isOpen: modalIsOpen,
         onAfterOpen: afterOpenModal,
         onRequestClose: closeModal,
-        style: styles.content,
+        style: styles,
         contentLabel: "Example Modal",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Infomation__WEBPACK_IMPORTED_MODULE_3__.default, {
-          onChange: onChange
+          date: info_date,
+          value_day: value_day,
+          data: events
         })
       })]
     })
@@ -2452,40 +2493,162 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var info_style = {
-  flex: {
+  headline: {
+    textAlign: 'center'
+  },
+  p: {
+    margin: '5px 0',
+    borderRadius: '30%',
     display: 'block'
+  },
+  inp: {
+    display: 'block',
+    marginBottom: '10px',
+    width: '100%',
+    fontSize: '15px',
+    border: 'none',
+    borderRadius: '3px',
+    boxShadow: 'none',
+    padding: '2px 8px'
+  },
+  button: {
+    display: 'inline-block',
+    marginTop: '30px'
+  },
+  ul: {
+    listStyleType: 'none',
+    paddingLeft: '0'
+  },
+  li: {
+    textAlign: 'center',
+    fontSize: '20px'
   }
 };
 
 function Infomation(props) {
+  var events = props.data;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-      children: "Hello"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      children: "close"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      children: "I am a modal"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+      style: info_style.headline,
+      children: "\u65E2\u5B58\u306E\u30A4\u30D9\u30F3\u30C8"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
+      style: info_style.ul,
+      children: events.map(function (val) {
+        return props.value_day === val.date ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          style: info_style.li,
+          children: val.name + ' ' + val.title + ' ' + val.time + '~'
+        }) : '';
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+      style: info_style.headline,
+      children: "\u30A4\u30D9\u30F3\u30C8\u8FFD\u52A0"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      style: info_style.headline,
+      children: props.date
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        value: props.content
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        style: info_style.flex,
-        children: "tab navigation"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        style: info_style.flex,
-        children: "stays"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        style: info_style.flex,
-        children: "inside"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        style: info_style.flex,
-        children: "the modal"
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+        style: info_style.p,
+        "for": "exampleFormControlInput1",
+        className: "form-label",
+        children: "\u30BF\u30A4\u30C8\u30EB"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+        "class": "form-control",
+        type: "text",
+        placeholder: "\u30BF\u30A4\u30C8\u30EB",
+        "aria-label": "default input example"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+        style: info_style.p,
+        "for": "exampleFormControlInput1",
+        className: "form-label",
+        children: "\u6642\u9593"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+        className: "form-select form-select-sm",
+        "aria-label": ".form-select-sm example",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "0",
+          selected: true,
+          children: "0\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "1",
+          children: "1\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "2",
+          children: "2\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "3",
+          children: "3\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "4",
+          children: "4\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "5",
+          children: "5\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "6",
+          children: "6\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "7",
+          children: "7\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "8",
+          children: "8\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "9",
+          children: "9\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "10",
+          children: "10\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "11",
+          children: "11\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "12",
+          children: "12\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "13",
+          children: "13\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "14",
+          children: "14\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "15",
+          children: "15\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "16",
+          children: "16\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "17",
+          children: "17\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "18",
+          children: "18\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "19",
+          children: "19\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "20",
+          children: "20\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "21",
+          children: "21\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "22",
+          children: "22\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          value: "23",
+          children: "23\u6642"
+        })]
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      style: info_style.headline,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        type: "submit",
+        style: info_style.button,
+        className: "btn btn-primary",
+        children: "\u8FFD\u52A0"
+      })
     })]
   });
-  Infomation.defaultProps = {
-    content: ""
-  };
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Infomation);
