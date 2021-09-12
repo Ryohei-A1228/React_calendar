@@ -44,7 +44,8 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'M PLUS 1p', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -56,13 +57,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background: #e6f3fd;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4343,11 +4343,12 @@ input[type=button].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #f7f7f7;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid rgb(0 0 0);
   border-radius: 0.25rem;
 }
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -6181,7 +6182,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: #fff !important;
+  background: linear-gradient(to bottom right, #35f5f5, #fff);
 }
 
 .bg-transparent {
