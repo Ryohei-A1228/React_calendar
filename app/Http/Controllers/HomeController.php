@@ -28,19 +28,19 @@ class HomeController extends Controller
 
 
     /**
-     * Show the application dashboard.
+     * イベントの追加
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function eventAdd(Request $request)
     {
-
+        dd($request->request);
 
         return view('home');
     }
 
     /**
-     * Show the application dashboard.
+     * イベント取得
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -48,9 +48,9 @@ class HomeController extends Controller
     {
         $events=[
             [
-                "name"=>'トム',
+                "name"=>'ボブ',
                 "title"=> 'バイト',
-                "date"=>'20210911',
+                "date"=>'20210912',
                 "time"=> '17'
             ]
         ];
