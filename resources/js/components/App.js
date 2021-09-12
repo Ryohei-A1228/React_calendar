@@ -1,9 +1,13 @@
-import React, { useState }  from 'react';
+import React, { useState,useEffect }  from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from 'react-calendar'
 import Modal from 'react-modal';
 import Infomation from './Infomation';
+import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
+import './App.css';
+import './Modal.css';
+
 
 const styles = {
     content: {
@@ -16,59 +20,45 @@ const styles = {
         bottom: 'auto',
         transform: 'translate(-50%, -50%)',
     },
-};
+    calendar:{
+      border: '1px solid #a0a096;'
 
-var events = [
-    {
-        name: 'トム',
-        title: 'バイト',
-        date: '20210911',
-        time: '17'
-    },
-    {
-        name: 'マイク',
-        title: 'ドライブ',
-        date: '20210924',
-        time: '14'
-    },
-    {
-        name: 'トム',
-        title: '飲み会',
-        date: '20210922',
-        time: '17'
-    },
-    {
-        name: 'ジェシー',
-        title: '飲み会',
-        date: '20210922',
-        time: '17'
     }
-];
+
+};
 
 Modal.setAppElement('#app');
 
 function App() {
     let subtitle;
+    //state
     const [modalIsOpen, setIsOpen] = React.useState(false);  
-
+    const [events, setEvents] = React.useState([]);  
+    
+    //effect
+    useEffect(async () => {
+      const json =  await axios.get("/event/get")
+      setEvents(json.data);
+    }, []);
+    
     function openModal() {
       setIsOpen(true);
     }
   
     function afterOpenModal() {
-      // references are now sync'd and can be accessed.
       subtitle.style.color = '#f00';
     }
   
     function closeModal() {
       setIsOpen(false);
     }
-
     const [value, onChange] = useState(new Date());
 
     var info_date = value.getFullYear()+'-'+('0' + (value.getMonth() + 1)).slice(-2)+'-'+('0' + value.getDate()).slice(-2);
 
     const getFormatDate = (date) => {
+        console.log(date);
+        console.log(`${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`);
         return `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`;
     };
 
@@ -88,36 +78,35 @@ function App() {
     };
 
     return (
-        <div>
-            <div className="container">
-                <div className="m-auto">
-                    <Calendar 
-                    onChange={onChange}
-                    value={value}
-                    onClickDay={openModal}
-                    tileContent={getTileContent}
-                    />
+        <div className="container">
+          <div className="mx-auto">
+              <Calendar 
+              locale="ja-JP"
 
-                </div>
-                <button onClick={openModal}>Open Modal</button>
-                <Modal
-                onChange={onChange}
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={styles}
-                contentLabel="Example Modal"
-                >
-                    
-                    <Infomation
-                    date={info_date}
-                    value_day={value_day}
-                    data={events}
-                    />
-                    
-                </Modal>
-            </div>
-            
+              className="mx-auto"
+              onChange={onChange}
+              value={value}
+              onClickDay={openModal}
+              tileContent={getTileContent}
+              />
+
+          </div>
+          <Modal
+          onChange={onChange}
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={styles.content}
+          contentLabel=""
+          >
+              
+              <Infomation
+              date={info_date}
+              value_day={value_day}
+              data={events}
+              />
+              
+          </Modal>
         </div>
     );
 }
@@ -128,4 +117,6 @@ export default App;
 if (document.getElementById('app')) {
     ReactDOM.render(<App />, document.getElementById('app'));
 }
+
+
 

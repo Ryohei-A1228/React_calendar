@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/event/add', [App\Http\Controllers\HomeController::class, 'eventAdd'])->name('event.add');
+Route::get('/event/get', [App\Http\Controllers\HomeController::class, 'eventGet'])->name('event.get');
 
 
 

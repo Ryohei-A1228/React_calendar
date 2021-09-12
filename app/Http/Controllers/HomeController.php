@@ -25,4 +25,36 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+
+    /**
+     * イベントの追加
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function eventAdd(Request $request)
+    {
+        dd($request->request);
+
+        return view('home');
+    }
+
+    /**
+     * イベント取得
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function eventGet(Request $request)
+    {
+        $events=[
+            [
+                "name"=>'ボブ',
+                "title"=> 'バイト',
+                "date"=>'20210912',
+                "time"=> '17'
+            ]
+        ];
+
+        return response()->json($events);
+    }
 }
