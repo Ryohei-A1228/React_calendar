@@ -1,4 +1,5 @@
 import React from 'react';
+import './Infomation.css';
 
 const info_style = {
     headline: {
@@ -34,7 +35,6 @@ const info_style = {
 };
 
 function Infomation(props) {
-
     var events = props.data;
 
     return (
@@ -45,11 +45,11 @@ function Infomation(props) {
             </ul>
             <h3 style={info_style.headline}>イベント追加</h3>
             <h5 style={info_style.headline}>{props.date}</h5>
-            <form>
+            <form method="POST" action="/event/add">
                 <label style={info_style.p} for="exampleFormControlInput1" className="form-label">タイトル</label>  
-                <input class="form-control" type="text" placeholder="タイトル" aria-label="default input example"/>
+                <input name="title" class="form-control" type="text" placeholder="タイトル" required />
                 <label style={info_style.p} for="exampleFormControlInput1" className="form-label">時間</label> 
-                <select className="form-select form-select-sm" aria-label=".form-select-sm example">
+                <select className="form-select form-select-sm" aria-label=".form-select-sm example" name="time" required>
                     <option value="0" selected>0時</option>
                     <option value="1">1時</option>
                     <option value="2">2時</option>
@@ -75,10 +75,11 @@ function Infomation(props) {
                     <option value="22">22時</option>
                     <option value="23">23時</option>
                 </select>
+                <div style={info_style.headline}>
+                    <button type='submit' style={info_style.button} className="btn btn-primary">追加</button>
+                </div>
             </form>
-            <div style={info_style.headline}>
-                <button type='submit' style={info_style.button} className="btn btn-primary">追加</button>
-            </div>
+
         </div>
     );
 

@@ -1,0 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+.ReactModal__Content{
+    font-family: 'Kiwi Maru', serif;
+    inset: auto !important;
+    display: fixed;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+
+}
+.ReactModal__Content--after-open{
+    border: 1px solid #D2B48C !important;
+    background-color: #f4ece2 !important;
+
+}
+select{
+    border: 1px solid #ced4da;
+}
