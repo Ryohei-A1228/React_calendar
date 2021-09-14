@@ -1,8 +1,3 @@
-.container {
-  position: relative;
-  max-width: 800px;
-}
-
 html {
   font-family: 'M PLUS 1p', sans-serif;
 }
@@ -18,7 +13,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background: #ffa963;
+  background: #ebcaaf;
 }
 
 .card {

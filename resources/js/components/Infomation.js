@@ -41,17 +41,18 @@ function Infomation(props) {
         <div>
             <h3 style={info_style.headline}>既存のイベント</h3>
             <ul style={info_style.ul}>
-                { events.map((val) => (props.value_day === val.date) ? <li style={info_style.li}>{val.name+' '+val.title+' '+val.time+'~'}</li> : '') }
+                { events.map((val) => (props.value_day === val.date) ? <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~'}</li> : '') }
             </ul>
-            <h3 style={info_style.headline}>イベント追加</h3>
-            <h5 style={info_style.headline}>{props.date}</h5>
             <form method="POST" action="/event/add">
+                <h3 style={info_style.headline}>イベント追加</h3>
+                <h5 style={info_style.headline}>{props.date}</h5>
+                <input type='hidden' name='date' value={props.value_day} />
                 <label style={info_style.p} for="exampleFormControlInput1" className="form-label">タイトル</label>  
                 <input name="title" class="form-control" type="text" placeholder="タイトル" required />
                 <label style={info_style.p} for="exampleFormControlInput1" className="form-label">時間</label> 
                 <select className="form-select form-select-sm" aria-label=".form-select-sm example" name="time" required>
                     <option value="0" selected>0時</option>
-                    <option value="1">1時</option>
+                    <option value="1" >1時</option>
                     <option value="2">2時</option>
                     <option value="3">3時</option>
                     <option value="4">4時</option>
@@ -76,7 +77,7 @@ function Infomation(props) {
                     <option value="23">23時</option>
                 </select>
                 <div style={info_style.headline}>
-                    <button type='submit' style={info_style.button} className="btn btn-primary">追加</button>
+                    <button type='submit' style={info_style.button} className="btn btn-warning">追加</button>
                 </div>
             </form>
 

@@ -57,8 +57,6 @@ function App() {
     var info_date = value.getFullYear()+'-'+('0' + (value.getMonth() + 1)).slice(-2)+'-'+('0' + value.getDate()).slice(-2);
 
     const getFormatDate = (date) => {
-        console.log(date);
-        console.log(`${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`);
         return `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`;
     };
 
@@ -72,7 +70,7 @@ function App() {
         return (
           <p >
             <br />
-            { events.map((val) => (day === val.date) ? val.name+' ' : '') }
+            { events.map((val) => (day === val.date) ? val.user.name+' ' : '') }
           </p>
         );
     };
@@ -96,7 +94,7 @@ function App() {
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
-          style={styles.content}
+          style={styles}
           contentLabel=""
           >
               
@@ -108,6 +106,7 @@ function App() {
               
           </Modal>
         </div>
+        
     );
 }
 

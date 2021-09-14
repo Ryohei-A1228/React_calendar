@@ -20,7 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @yield('css')
+    <link href="{{ asset('css/app_plus.css') }}" rel="stylesheet">
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">

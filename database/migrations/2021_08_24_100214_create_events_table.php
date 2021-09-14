@@ -17,8 +17,8 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->date('date');
-            $table->integer('time');
+            $table->string('date');
+            $table->string('time');
             $table->timestamps();
         });
     }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -34,7 +37,10 @@ class HomeController extends Controller
      */
     public function eventAdd(Request $request)
     {
-        dd($request->request);
+        $event = new Event;
+        $event->fill($request->all());
+        $event->user()->associate(Auth::user());
+        $event->save();
 
         return view('home');
     }
@@ -44,16 +50,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function eventGet(Request $request)
-    {
-        $events=[
-            [
-                "name"=>'ボブ',
-                "title"=> 'バイト',
-                "date"=>'20210912',
-                "time"=> '17'
-            ]
-        ];
+    public function eventGet()
+    {   
+        $events = Event::with('user')->get();
 
         return response()->json($events);
     }
