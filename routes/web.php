@@ -25,5 +25,7 @@ Route::post('/event/add', [App\Http\Controllers\HomeController::class, 'eventAdd
 
 Route::get('/event/get', [App\Http\Controllers\HomeController::class, 'eventGet'])->name('event.get');
 
+Route::post('/event/delete', [App\Http\Controllers\HomeController::class, 'eventDelete'])->name('event.delete');
+
 
 

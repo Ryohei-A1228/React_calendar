@@ -22,8 +22,11 @@ const styles = {
     },
     calendar:{
       border: '1px solid #a0a096;'
-
-    }
+    },
+    ul: {
+      listStyleType: 'none',
+      paddingLeft: '0'
+    },
 
 };
 
@@ -40,7 +43,11 @@ function App() {
       const json =  await axios.get("/event/get")
       setEvents(json.data);
     }, []);
-    
+
+    const login_id = window.Laravel.id;
+
+    let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
+
     function openModal() {
       setIsOpen(true);
     }
@@ -68,10 +75,10 @@ function App() {
         }
         const day = getFormatDate(props.date);
         return (
-          <p >
-            <br />
-            { events.map((val) => (day === val.date) ? val.user.name+' ' : '') }
-          </p>
+          <ul style={styles.ul}>
+            <br/>
+            { events.map((val) => (day === val.date) ? <li className='day_event_content'>{val.user.name}</li> : '') }
+          </ul>
         );
     };
 
@@ -99,6 +106,8 @@ function App() {
           >
               
               <Infomation
+              csrf={csrf_token}
+              login_id={login_id}
               date={info_date}
               value_day={value_day}
               data={events}

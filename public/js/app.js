@@ -2394,6 +2394,10 @@ var styles = {
   },
   calendar: {
     border: '1px solid #a0a096;'
+  },
+  ul: {
+    listStyleType: 'none',
+    paddingLeft: '0'
   }
 };
 react_modal__WEBPACK_IMPORTED_MODULE_3___default().setAppElement('#app');
@@ -2432,6 +2436,8 @@ function App() {
       }
     }, _callee);
   })), []);
+  var login_id = window.Laravel.id;
+  var csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
 
   function openModal() {
     setIsOpen(true);
@@ -2464,9 +2470,13 @@ function App() {
     }
 
     var day = getFormatDate(props.date);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("ul", {
+      style: styles.ul,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), events.map(function (val) {
-        return day === val.date ? val.user.name + ' ' : '';
+        return day === val.date ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("li", {
+          className: "day_event_content",
+          children: val.user.name
+        }) : '';
       })]
     });
   };
@@ -2491,6 +2501,8 @@ function App() {
       style: styles,
       contentLabel: "",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Infomation__WEBPACK_IMPORTED_MODULE_4__.default, {
+        csrf: csrf_token,
+        login_id: login_id,
         date: info_date,
         value_day: value_day,
         data: events
@@ -2560,17 +2572,35 @@ var info_style = {
 
 function Infomation(props) {
   var events = props.data;
+  var logId = props.login_id;
+  var csrf_token = props.csrf;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
       style: info_style.headline,
       children: "\u65E2\u5B58\u306E\u30A4\u30D9\u30F3\u30C8"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
       style: info_style.ul,
-      children: events.map(function (val) {
-        return props.value_day === val.date ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          style: info_style.li,
-          children: val.user.name + ' ' + val.title + ' ' + val.time + '~'
-        }) : '';
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
+        method: "POST",
+        action: "/event/delete",
+        children: events.map(function (val) {
+          return props.value_day === val.date ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+            style: info_style.li,
+            children: [val.user.name + ' ' + val.title + ' ' + val.time + '~    ', logId == val.user_id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+              type: "submit",
+              className: "btn btn-danger",
+              children: ["\u524A\u9664", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "hidden",
+                name: "id",
+                value: val.id
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "hidden",
+                name: "_token",
+                value: csrf_token
+              })]
+            }) : '']
+          }) : '';
+        })
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       method: "POST",
@@ -7180,7 +7210,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".react-calendar{\r\n    \r\n    font-family: 'Kiwi Maru', serif;\r\n    border: 1px solid #D2B48C;\r\n    background-color: #f4ece2;\r\n\r\n    width:90%;\r\n    box-shadow: 2px 2px 2px black;\r\n}\r\n\r\n.react-calendar__navigation{\r\n    margin:10px;\r\n\r\n}\r\n\r\n.react-calendar__viewContainer{\r\n    margin:10px;\r\n}\r\n\r\n\r\n.react-calendar .react-calendar__tile:nth-child(7n-1) {\r\n  color: #00F;\r\n}\r\n \r\n.react-calendar .react-calendar__month-view__days__day--neighboringMonth {\r\n  color: #757575 !important;\r\n}\r\n.react-calendar__navigation__label{\r\n    font-size:2rem;\r\n}\r\n.react-calendar__tile--active{\r\n    background-color: #8B4513;\r\n}\r\n\r\n.react-calendar__tile--active:enabled:hover,.react-calendar__tile--active:enabled:focus{\r\n    background-color: #d4b7a2;\r\n}\r\n.react-calendar__tile--now {\r\n    background-color: #f3b88e;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".react-calendar{\r\n    \r\n    font-family: 'Kiwi Maru', serif;\r\n    border: 1px solid #D2B48C;\r\n    background-color: #f4ece2;\r\n\r\n    width:90%;\r\n    box-shadow: 2px 2px 2px black;\r\n}\r\n\r\n.react-calendar__navigation{\r\n    margin:10px;\r\n\r\n}\r\n\r\n.react-calendar__viewContainer{\r\n    margin:10px;\r\n}\r\n\r\n\r\n.react-calendar .react-calendar__tile:nth-child(7n-1) {\r\n  color: #00F;\r\n}\r\n \r\n.react-calendar .react-calendar__month-view__days__day--neighboringMonth {\r\n  color: #757575 !important;\r\n}\r\n.react-calendar__navigation__label{\r\n    font-size:2rem;\r\n}\r\n.react-calendar__tile--active{\r\n    background-color: #8B4513;\r\n}\r\n\r\n.react-calendar__tile--active:enabled:hover,.react-calendar__tile--active:enabled:focus{\r\n    background-color: #d4b7a2;\r\n}\r\n.react-calendar__tile--now {\r\n    background-color: #f3b88e;\r\n}\r\n\r\n\r\n\r\n/*スマホ*/\r\n@media screen and (max-width: 479px) {\r\n    .react-calendar__navigation__label__labelText {\r\n        font-size: 1rem;\r\n    }\r\n\r\n    .day_event_content{\r\n        font-size: 0.2rem;\r\n    }\r\n\r\n    .react-calendar {\r\n        width: 100%;\r\n    }\r\n\r\n    .container, .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {\r\n        width: 100%;\r\n        padding: auto 2px;\r\n    }\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
