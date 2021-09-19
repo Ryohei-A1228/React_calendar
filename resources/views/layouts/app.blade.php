@@ -46,6 +46,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
+                               
                             @endif
 
                             @if (Route::has('register'))
@@ -70,6 +71,9 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">友達追加</a>
                             </li>
                         @endguest
                     </ul>

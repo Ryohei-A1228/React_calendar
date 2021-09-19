@@ -97,12 +97,13 @@ function App() {
           style={styles}
           contentLabel=""
           >
+            <addFriend />
               
-              <Infomation
+              {/* <Infomation
               date={info_date}
               value_day={value_day}
               data={events}
-              />
+              /> */}
               
           </Modal>
         </div>
