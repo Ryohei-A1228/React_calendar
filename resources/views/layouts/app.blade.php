@@ -72,9 +72,6 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">友達追加</a>
-                            </li>
                         @endguest
                     </ul>
                 </div>

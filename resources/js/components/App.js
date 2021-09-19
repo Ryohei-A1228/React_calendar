@@ -32,10 +32,13 @@ const styles = {
 
 Modal.setAppElement('#app');
 
+
+
 function App() {
     let subtitle;
     //state
     const [modalIsOpen, setIsOpen] = React.useState(false);  
+    const [addFriend, setaddFriend] = React.useState(false);  
     const [events, setEvents] = React.useState([]);  
     
     //effect
@@ -49,11 +52,17 @@ function App() {
     let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
 
     function openModal() {
+      setaddFriend(false);
       setIsOpen(true);
     }
   
     function afterOpenModal() {
       subtitle.style.color = '#f00';
+    }
+
+    function clickAddFriend(){
+      setaddFriend(true);
+      setIsOpen(true);  
     }
   
     function closeModal() {
@@ -84,6 +93,7 @@ function App() {
 
     return (
         <div className="container">
+          <button className="btn" onClick={clickAddFriend} >友達の追加</button>
           <div className="mx-auto">
               <Calendar 
               locale="ja-JP"
@@ -104,18 +114,27 @@ function App() {
           style={styles}
           contentLabel=""
           >
+<<<<<<< HEAD
             <AddFriend
             csrf={csrf_token} />
               {/* <Infomation
               <Infomation
               close={closeModal}
+=======
+
+            {
+              addFriend?<addFriend />: <Infomation
+>>>>>>> 70a46bf4479311b4081ccc56613d3327e0bdaac9
               csrf={csrf_token}
               login_id={login_id}
 
               date={info_date}
               value_day={value_day}
-å              data={events}
-              /> */}
+              data={events}
+              />
+            }
+            
+             
               
           </Modal>
         </div>
