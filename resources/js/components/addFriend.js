@@ -34,20 +34,19 @@ const info_style = {
     }
 };
 
-function Infomation(props) {
-    var events = props.data;
+function AddFriend(props) {
+    var csrf_token = props.csrf;
 
     return (
         <div>
-            <h3 style={info_style.headline}>既存のイベント</h3>
-            <ul style={info_style.ul}>
-                { events.map((val) => (props.value_day === val.date) ? <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~'}</li> : '') }
-            </ul>
-            <form method="POST" action="/event/add">
                 
-                <div style={info_style.headline}>
-                    <button type='submit' style={info_style.button} className="btn btn-warning">追加</button>
-                </div>
+            <form method="POST" action="/friend/add">
+                <input type="hidden" name="_token" value={ csrf_token } />
+                <label style={info_style.p} for="exampleFormControlInput1" className="form-label">ユーザーネーム</label>
+                <input type='text' name='name' placeholder='友達の名前' required />
+                <label style={info_style.p} for="exampleFormControlInput1" className="form-label">e-mail</label>
+                <input type='email' name='email' placeholder='友達のメールアドレス' required />
+                <button type='submit' style={info_style.button} className="btn btn-warning">追加</button>
             </form>
 
         </div>
@@ -55,4 +54,4 @@ function Infomation(props) {
 
 }
 
-export default Infomation;
+export default AddFriend;

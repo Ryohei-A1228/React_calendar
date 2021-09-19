@@ -8,5 +8,4 @@
 @section('content')
 <div id="app"></div>
 @csrf
-{{ Auth::id() }}
 @endsection

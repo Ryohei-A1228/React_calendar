@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,6 +68,24 @@ class HomeController extends Controller
         $id = $request->input('id'); 
         $event = Event::find($id);
         $event->delete();
+
+        return redirect()->to('/home');
+    }
+
+    /**
+     * 友達追加
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function friendAdd(Request $request, User $user)
+    {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $user = User::where('name', $name)->where('email', $email)->first();
+        $follow = new Follow;
+        $follow->user()->associate(Auth::user());
+        $follow->user_following_id = $user->id;
+        $follow->save();
 
         return redirect()->to('/home');
     }

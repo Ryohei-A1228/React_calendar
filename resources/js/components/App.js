@@ -2,7 +2,7 @@ import React, { useState,useEffect }  from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from 'react-calendar'
 import Modal from 'react-modal';
-import Infomation from './Infomation';
+import AddFriend from './addFriend.js';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import './App.css';
@@ -104,7 +104,8 @@ function App() {
           style={styles}
           contentLabel=""
           >
-            <addFriend />
+            <AddFriend
+            csrf={csrf_token} />
               {/* <Infomation
               <Infomation
               close={closeModal}
