@@ -36,12 +36,17 @@ const info_style = {
 
 function Infomation(props) {
     var events = props.data;
+    var logId = props.login_id;
+    var csrf_token = props.csrf;
 
     return (
         <div>
             <h3 style={info_style.headline}>既存のイベント</h3>
             <ul style={info_style.ul}>
-                { events.map((val) => (props.value_day === val.date) ? <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~'}</li> : '') }
+                <form method='POST' action='/event/delete'>
+                    { events.map((val) => (props.value_day === val.date) ? 
+                    <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~    '}{(logId == val.user_id) ? <button type="submit" className="btn btn-danger">削除<input type='hidden' name='id' value={val.id} /><input type="hidden" name="_token" value={ csrf_token } /></button> : ''}</li> : '') } 
+                </form>
             </ul>
             <form method="POST" action="/event/add">
                 <h3 style={info_style.headline}>イベント追加</h3>

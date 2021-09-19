@@ -42,7 +42,7 @@ class HomeController extends Controller
         $event->user()->associate(Auth::user());
         $event->save();
 
-        return view('home');
+        return redirect()->to('/home');
     }
 
     /**
@@ -55,5 +55,19 @@ class HomeController extends Controller
         $events = Event::with('user')->get();
 
         return response()->json($events);
+    }
+
+    /**
+     * イベント削除
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function eventDelete(Request $request, Event $event)
+    {
+        $id = $request->input('id'); 
+        $event = Event::find($id);
+        $event->delete();
+
+        return redirect()->to('/home');
     }
 }
