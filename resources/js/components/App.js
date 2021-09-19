@@ -104,15 +104,17 @@ function App() {
           style={styles}
           contentLabel=""
           >
-              
+            <addFriend />
+              {/* <Infomation
               <Infomation
               close={closeModal}
               csrf={csrf_token}
               login_id={login_id}
+
               date={info_date}
               value_day={value_day}
-              data={events}
-              />
+å              data={events}
+              /> */}
               
           </Modal>
         </div>
