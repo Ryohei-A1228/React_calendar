@@ -106,6 +106,7 @@ function App() {
           >
               
               <Infomation
+              close={closeModal}
               csrf={csrf_token}
               login_id={login_id}
               date={info_date}

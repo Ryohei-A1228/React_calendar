@@ -2501,6 +2501,7 @@ function App() {
       style: styles,
       contentLabel: "",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Infomation__WEBPACK_IMPORTED_MODULE_4__.default, {
+        close: closeModal,
         csrf: csrf_token,
         login_id: login_id,
         date: info_date,
@@ -2719,6 +2720,15 @@ function Infomation(props) {
           children: "\u8FFD\u52A0"
         })
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      style: info_style.headline,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        type: "button",
+        style: info_style.button,
+        onClick: props.close,
+        className: "btn btn-secondary",
+        children: "\u9589\u3058\u308B"
+      })
     })]
   });
 }
