@@ -45,7 +45,8 @@ function Infomation(props) {
             <ul style={info_style.ul}>
                 <form method='POST' action='/event/delete'>
                     { events.map((val) => (props.value_day === val.date) ? 
-                    <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~    '}{(logId == val.user_id) ? <button type="submit" className="btn btn-danger">削除<input type='hidden' name='id' value={val.id} /><input type="hidden" name="_token" value={ csrf_token } /></button> : ''}</li> : '') } 
+                    <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~    '}{(logId == val.user_id) ? <button type="submit" className="btn btn-danger">削除<input type='hidden' name='id' value={val.id} /><input type="hidden" name="_token" value={ csrf_token } /></button> : ''}</li> 
+                    : '') } 
                 </form>
             </ul>
             <form method="POST" action="/event/add">
@@ -85,7 +86,9 @@ function Infomation(props) {
                     <button type='submit' style={info_style.button} className="btn btn-warning">追加</button>
                 </div>
             </form>
-
+            <div style={info_style.headline}>
+                <button type="button" style={info_style.button} onClick={props.close} className="btn btn-secondary">閉じる</button>
+            </div>
         </div>
     );
 
