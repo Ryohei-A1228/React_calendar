@@ -33,6 +33,37 @@ class EventsTableSeeder extends Seeder
                 'date' => '20210922',
                 'time' => 17
             ],
+            [
+                'user_id' => 3,
+                'title' => '飲み会',
+                'date' => '20210912',
+                'time' => 17
+            ],
+            [
+                'user_id' => 4,
+                'title' => '飲み会',
+                'date' => '20210927',
+                'time' => 19
+            ],
+            [
+                'user_id' => 5,
+                'title' => '飲み会',
+                'date' => '20210922',
+                'time' => 17
+            ],
+            [
+                'user_id' => 3,
+                'title' => 'ドライブ',
+                'date' => '20210909',
+                'time' => 10
+            ],
+            [
+                'user_id' => 4,
+                'title' => 'ドライブ',
+                'date' => '20210919',
+                'time' => 9
+            ],
+            
         ];
 
         foreach($dataset as $data) {

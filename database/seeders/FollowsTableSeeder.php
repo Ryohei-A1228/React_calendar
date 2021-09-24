@@ -31,6 +31,18 @@ class FollowsTableSeeder extends Seeder
                 'user_id' => 2,
                 'user_following_id' => 1
             ],
+            [
+                'user_id' => 2,
+                'user_following_id' => 4
+            ],
+            [
+                'user_id' => 5,
+                'user_following_id' => 4
+            ],
+            [
+                'user_id' => 4,
+                'user_following_id' => 2
+            ],
         ];
 
         foreach($dataset as $data) {

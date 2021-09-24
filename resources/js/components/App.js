@@ -1,8 +1,11 @@
-import React, { useState,useEffect }  from 'react';
+import React, { useEffect }  from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from 'react-calendar'
 import Modal from 'react-modal';
 import AddFriend from './addFriend.js';
+import Information from './Infomation.js';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import './App.css';
@@ -27,35 +30,84 @@ const styles = {
       listStyleType: 'none',
       paddingLeft: '0'
     },
+    add: {
+      textAlign: 'center',
+      display: 'block',
+      margin: '0 auto 1rem auto',
+      width: '90%',
+    },
+    buttons: {
+      paddingTop: '0.5rem',
+      display: 'block',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-around'
+    },
+    selectBox: {
+      width: '100%',
+      display: 'block',
+      margin: '1.0rem'
+    },
+    userAdd: {
+      width:'25%',
+      display: 'block'
+    },
+    renew: {
+      width: '25%',
+      display: 'block'
+    }
 
 };
 
 Modal.setAppElement('#app');
 
-
-
 function App() {
+    const login_id = window.Laravel.id;
+    let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
+
     let subtitle;
+
     //state
+    const [value, onChange] = React.useState(new Date());
     const [modalIsOpen, setIsOpen] = React.useState(false);  
     const [addFriend, setaddFriend] = React.useState(false);  
     const [events, setEvents] = React.useState([]);  
+    const [follows, setFollows] = React.useState([]);
+    const [selectedOption, setSelectedOption] = React.useState(null);
+    const [user_id, setUser_id] = React.useState([login_id]);
     
     //effect
     useEffect(async () => {
-      const json =  await axios.get("/event/get")
-      setEvents(json.data);
+      const jsonEvents =  await axios.get("/event/get");
+      const jsonFollows =  await axios.get("/follow/get");
+      setEvents(jsonEvents.data);
+      setFollows(jsonFollows.data);
     }, []);
-
-    const login_id = window.Laravel.id;
-
-    let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
 
     function openModal() {
       setaddFriend(false);
       setIsOpen(true);
     }
-  
+
+    const animatedComponents = makeAnimated();
+
+    //ユーザ選択
+    const options = [];
+    follows.map((val) => {
+      var item = {};
+      item.value = val.id;
+      item.label = val.name;
+      options.push(item);
+    });
+
+    const eventRenew = () => {
+      const copy_user_id = user_id.slice(0, user_id.length);
+      selectedOption.map((val) => {
+        copy_user_id.push(val.value);  
+      })
+      setUser_id(copy_user_id);
+    }
+
     function afterOpenModal() {
       subtitle.style.color = '#f00';
     }
@@ -68,7 +120,6 @@ function App() {
     function closeModal() {
       setIsOpen(false);
     }
-    const [value, onChange] = useState(new Date());
 
     var info_date = value.getFullYear()+'-'+('0' + (value.getMonth() + 1)).slice(-2)+'-'+('0' + value.getDate()).slice(-2);
 
@@ -86,14 +137,30 @@ function App() {
         return (
           <ul style={styles.ul}>
             <br/>
-            { events.map((val) => (day === val.date) ? <li className='day_event_content'>{val.user.name}</li> : '') }
+            { events.map((val) => (day === val.date && user_id.some(item => item == val.user_id)) ? <li className='day_event_content'>{val.user.name}</li> : '') }
           </ul>
         );
     };
 
     return (
         <div className="container">
-          <button className="btn" onClick={clickAddFriend} >友達の追加</button>
+
+          <div style={styles.add}>
+            <Select
+              isMulti
+              defaultValue={selectedOption}
+              onChange={setSelectedOption}
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              options={options}
+              style={styles.selectBox}
+            />
+            <div style={styles.buttons}>
+              <button className="btn btn-primary" style={styles.userAdd} onClick={clickAddFriend} >友達の追加</button>
+              <button className="btn btn-warning" style={styles.renew} type="submit" onClick={eventRenew}>更新</button>
+            </div>
+          </div>
+
           <div className="mx-auto">
               <Calendar 
               locale="ja-JP"
@@ -114,20 +181,15 @@ function App() {
           style={styles}
           contentLabel=""
           >
-<<<<<<< HEAD
-            <AddFriend
-            csrf={csrf_token} />
-              {/* <Infomation
-              <Infomation
-              close={closeModal}
-=======
 
             {
-              addFriend?<addFriend />: <Infomation
->>>>>>> 70a46bf4479311b4081ccc56613d3327e0bdaac9
+              addFriend ? 
+              <AddFriend csrf={csrf_token}/> : 
+              <Information
+              user_id={user_id}
+              close={closeModal}
               csrf={csrf_token}
               login_id={login_id}
-
               date={info_date}
               value_day={value_day}
               data={events}

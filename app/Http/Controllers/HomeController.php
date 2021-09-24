@@ -53,7 +53,13 @@ class HomeController extends Controller
      */
     public function eventGet()
     {   
-        $events = Event::with('user')->get();
+        $follows = Follow::where('user_id', Auth::user()->id)->join('users', 'follows.user_following_id', '=', 'users.id')->get();
+        $relations[] = array() ;
+        array_push($relations, Auth::user()->id);
+        foreach ($follows as $follow) {
+            array_push($relations, $follow->id);
+        }
+        $events = Event::whereIn('user_id', $relations)->with('user')->get();
 
         return response()->json($events);
     }
@@ -67,6 +73,9 @@ class HomeController extends Controller
     {
         $id = $request->input('id'); 
         $event = Event::find($id);
+        if (Auth::id() !== $event->user_id) {
+            abort(403);
+        }
         $event->delete();
 
         return redirect()->to('/home');
@@ -82,11 +91,26 @@ class HomeController extends Controller
         $name = $request->input('name');
         $email = $request->input('email');
         $user = User::where('name', $name)->where('email', $email)->first();
+        if (!isset($user)) {
+            abort(403, 'User Not Found');
+        }
         $follow = new Follow;
         $follow->user()->associate(Auth::user());
         $follow->user_following_id = $user->id;
         $follow->save();
 
         return redirect()->to('/home');
+    }
+
+    /**
+     * フォロー取得
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function followGet()
+    {
+        $follows = Follow::where('user_id', Auth::user()->id)->join('users', 'follows.user_following_id', '=', 'users.id')->get();
+
+        return response()->json($follows);
     }
 }

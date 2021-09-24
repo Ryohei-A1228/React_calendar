@@ -44,7 +44,7 @@ function Infomation(props) {
             <h3 style={info_style.headline}>既存のイベント</h3>
             <ul style={info_style.ul}>
                 <form method='POST' action='/event/delete'>
-                    { events.map((val) => (props.value_day === val.date) ? 
+                    { events.map((val) => (props.value_day === val.date && props.user_id.some(item => item == val.user_id)) ? 
                     <li style={info_style.li}>{val.user.name+' '+val.title+' '+val.time+'~    '}{(logId == val.user_id) ? <button type="submit" className="btn btn-danger">削除<input type='hidden' name='id' value={val.id} /><input type="hidden" name="_token" value={ csrf_token } /></button> : ''}</li> 
                     : '') } 
                 </form>
