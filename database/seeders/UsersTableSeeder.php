@@ -16,14 +16,14 @@ class UsersTableSeeder extends Seeder
     {
         $dataset = [
             [
-                'name' => 'アベ',
+                'name' => 'とも',
                 'email' => 'abe@example.com',
-                'password' => bcrypt('passwordabe')
+                'password' => bcrypt('passwordtomos')
             ],
             [
-                'name' => 'リョウヘイ',
-                'email' => 'ryohei@example.com',
-                'password' => bcrypt('passwordryohei')
+                'name' => 'りょうた',
+                'email' => 'ryota@example.com',
+                'password' => bcrypt('passwordryota')
             ],
             [
                 'name' => 'カズキ',

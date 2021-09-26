@@ -4621,7 +4621,7 @@ function Infomation(props) {
             return item == val.user_id;
           }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
             style: info_style.li,
-            children: [val.user.name + ' ' + val.title + ' ' + val.time + '~    ', logId == val.user_id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+            children: [val.user.name + ' ' + val.title + ' ' + val.start_time + '~' + val.end_time + '  ', logId == val.user_id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
               type: "submit",
               className: "btn btn-danger",
               children: ["\u524A\u9664", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -4665,11 +4665,95 @@ function Infomation(props) {
         style: info_style.p,
         "for": "exampleFormControlInput1",
         className: "form-label",
-        children: "\u6642\u9593"
+        children: "\u958B\u59CB\u6642\u9593"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
         className: "form-select form-select-sm",
         "aria-label": ".form-select-sm example",
-        name: "time",
+        name: "start_time",
+        required: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "0",
+          selected: true,
+          children: "0\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "1",
+          children: "1\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "2",
+          children: "2\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "3",
+          children: "3\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "4",
+          children: "4\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "5",
+          children: "5\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "6",
+          children: "6\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "7",
+          children: "7\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "8",
+          children: "8\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "9",
+          children: "9\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "10",
+          children: "10\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "11",
+          children: "11\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "12",
+          children: "12\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "13",
+          children: "13\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "14",
+          children: "14\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "15",
+          children: "15\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "16",
+          children: "16\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "17",
+          children: "17\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "18",
+          children: "18\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "19",
+          children: "19\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "20",
+          children: "20\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "21",
+          children: "21\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "22",
+          children: "22\u6642"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "23",
+          children: "23\u6642"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+        style: info_style.p,
+        "for": "exampleFormControlInput1",
+        className: "form-label",
+        children: "\u7D42\u4E86\u6642\u9593"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+        className: "form-select form-select-sm",
+        "aria-label": ".form-select-sm example",
+        name: "end_time",
         required: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "0",
@@ -4816,9 +4900,11 @@ var info_style = {
 
 function AddFriend(props) {
   var csrf_token = props.csrf;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     style: info_style.headline,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+      children: "\u53CB\u9054\u8FFD\u52A0"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       method: "POST",
       action: "/friend/add",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -4855,7 +4941,7 @@ function AddFriend(props) {
         className: "btn btn-warning",
         children: "\u8FFD\u52A0"
       })]
-    })
+    })]
   });
 }
 

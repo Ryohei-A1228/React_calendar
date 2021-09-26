@@ -73,7 +73,8 @@ class HomeController extends Controller
     {
         $id = $request->input('id'); 
         $event = Event::find($id);
-        if (Auth::id() !== $event->user_id) {
+        //dd($event,Auth::id());
+        if (Auth::id() != $event->user_id) {
             abort(403);
         }
         $event->delete();

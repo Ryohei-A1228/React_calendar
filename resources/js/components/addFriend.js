@@ -31,6 +31,7 @@ function AddFriend(props) {
 
     return (
         <div style={info_style.headline}>
+            <h2>友達追加</h2>
             <form method="POST" action="/friend/add">
                 <input type="hidden" name="_token" value={ csrf_token } />
                 <label style={info_style.p} for="exampleFormControlInput1" className="form-label">ユーザーネーム</label>

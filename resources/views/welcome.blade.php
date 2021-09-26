@@ -5,13 +5,16 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="https://tk.ismcdn.jp/mwimgs/6/b/1140/img_6b2ab30f2216255c81d55d3fdb4049e9221762.jpg" alt="First slide">
+            <img class="d-block w-100" src="{{ asset('img/B9BD0058-2F34-4CE8-BAE7-3C2659553793.jpg') }}" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="https://photoria.jp/wp-content/uploads/2019/07/02-2L-1.jpg" alt="Second slide">
+            <img class="d-block w-100" src="{{ asset('img/C45CF148-46AC-4923-AB26-33F3FD13149C.jpg') }}" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="https://dot.asahi.com/S2000/upload/2019120400080_1.jpg" alt="Third slide">
+            <img class="d-block w-100" src="{{ asset('img/F48786D8-ABF5-42DD-B03D-F4D33667160F.jpg') }}" alt="Fourth slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{ asset('img/D717448D-B0B7-487D-90EC-D3191C2D123E.jpg') }}" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
