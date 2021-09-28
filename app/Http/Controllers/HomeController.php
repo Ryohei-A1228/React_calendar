@@ -54,14 +54,12 @@ class HomeController extends Controller
     public function eventGet()
     {   
         $follows = Follow::where('user_id', Auth::user()->id)->join('users', 'follows.user_following_id', '=', 'users.id')->get();
-        //dd($follows);
         $relations = [] ;
         array_push($relations, Auth::user()->id);
         foreach ($follows as $follow) {
             array_push($relations, $follow->id);
         }
         $events = Event::whereIn('user_id', $relations)->with('user')->get();
-        dd($relations);
 
         return response()->json($events);
     }
@@ -75,7 +73,6 @@ class HomeController extends Controller
     {
         $id = $request->input('id'); 
         $event = Event::find($id);
-        //dd($event,Auth::id());
         if (Auth::id() != $event->user_id) {
             abort(403);
         }
