@@ -55,14 +55,6 @@ class HomeController extends Controller
     {   
         $follows = Follow::where('user_id', Auth::user()->id)->join('users', 'follows.user_following_id', '=', 'users.id')->get();
         $relations[] = array() ;
-        if (empty($follows)){
-            array_push($relations, Auth::user()->id);
-        } else {
-            array_push($relations, Auth::user()->id);
-            foreach ($follows as $follow) {
-                array_push($relations, $follow->id);
-            }
-        }
         array_push($relations, Auth::user()->id);
         foreach ($follows as $follow) {
             array_push($relations, $follow->id);
