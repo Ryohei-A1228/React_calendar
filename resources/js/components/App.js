@@ -117,10 +117,6 @@ function App() {
       setUser_id(copy_user_id);
     }
 
-    function afterOpenModal() {
-      subtitle.style.color = '#f00';
-    }
-
     //Modal関連
     function openModal() {
       setIsOpen(true);
@@ -185,7 +181,6 @@ function App() {
           <div className="mx-auto">
               <Calendar 
               locale="ja-JP"
-
               className="mx-auto"
               onChange={onChange}
               value={value}
@@ -202,7 +197,6 @@ function App() {
           <Modal
           onChange={onChange}
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={styles}
           contentLabel=""

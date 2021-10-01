@@ -17,19 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::post('/event/add', [App\Http\Controllers\HomeController::class, 'eventAdd'])->name('event.add');
-
-Route::get('/event/get', [App\Http\Controllers\HomeController::class, 'eventGet'])->name('event.get');
-
-Route::post('/event/delete', [App\Http\Controllers\HomeController::class, 'eventDelete'])->name('event.delete');
-
-Route::post('/friend/add', [App\Http\Controllers\HomeController::class, 'friendAdd'])->name('friend.add');
-
-Route::get('/follow/get', [App\Http\Controllers\HomeController::class, 'followGet'])->name('follow.get');
-
-Route::post('/event/get/goo', [App\Http\Controllers\HomeController::class, 'googleEventGet']);
-
+Route::middleware('verified')->group(function() {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/event/add', [App\Http\Controllers\HomeController::class, 'eventAdd'])->name('event.add');
+    Route::get('/event/get', [App\Http\Controllers\HomeController::class, 'eventGet'])->name('event.get');
+    Route::post('/event/delete', [App\Http\Controllers\HomeController::class, 'eventDelete'])->name('event.delete');
+    Route::post('/friend/add', [App\Http\Controllers\HomeController::class, 'friendAdd'])->name('friend.add');
+    Route::get('/follow/get', [App\Http\Controllers\HomeController::class, 'followGet'])->name('follow.get');
+    Route::post('/event/get/goo', [App\Http\Controllers\HomeController::class, 'googleEventGet']);
+});

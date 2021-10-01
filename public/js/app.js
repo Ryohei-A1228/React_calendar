@@ -4454,11 +4454,7 @@ function App() {
       copy_user_id.push(val.value);
     });
     setUser_id(copy_user_id);
-  };
-
-  function afterOpenModal() {
-    subtitle.style.color = '#f00';
-  } //Modal関連
+  }; //Modal関連
 
 
   function openModal() {
@@ -4560,7 +4556,6 @@ function App() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)((react_modal__WEBPACK_IMPORTED_MODULE_3___default()), {
       onChange: onChange,
       isOpen: modalIsOpen,
-      onAfterOpen: afterOpenModal,
       onRequestClose: closeModal,
       style: styles,
       contentLabel: "",
