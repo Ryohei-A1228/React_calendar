@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap');
+
 html {
   font-family: 'M PLUS 1p', sans-serif;
+  position: relative;
 }
 
 .bg-white {
-  background: linear-gradient(to bottom right, #fc8601, #fff);
+  background-color: #813906;
 }
+
 
 body {
   margin: 0;
@@ -24,6 +28,44 @@ body {
   word-wrap: break-word;
   background-color: #f7f7f7;
   background-clip: border-box;
-  border: 1px solid rgb(0 0 0);
-  border-radius: 0.25rem;
+  border: 6px solid rgb(255 172 2);
+  border-radius: 3rem 0;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgb(255 172 2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.footer {
+  text-align: center;
+  background-color: #813906;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.copyright {
+  height: 100%;
+  margin: 0 0;
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.button {
+  width: 25%;
+}
+
+@media screen and (max-width: 479px) {
+  .button {
+    width: 45%;
+  }
 }

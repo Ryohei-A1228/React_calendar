@@ -31,5 +31,5 @@ Route::post('/friend/add', [App\Http\Controllers\HomeController::class, 'friendA
 
 Route::get('/follow/get', [App\Http\Controllers\HomeController::class, 'followGet'])->name('follow.get');
 
-
+Route::post('/event/get/goo', [App\Http\Controllers\HomeController::class, 'googleEventGet']);
 

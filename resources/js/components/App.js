@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Calendar from 'react-calendar'
 import Modal from 'react-modal';
 import AddFriend from './addFriend.js';
+import GoogleGet from './googleGet.js';
 import Information from './Infomation.js';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -49,12 +50,23 @@ const styles = {
       margin: '1.0rem'
     },
     userAdd: {
-      width:'25%',
       display: 'block'
     },
     renew: {
-      width: '25%',
       display: 'block'
+    },
+    goo: {
+      width: '50%',
+      margin: '30px auto 10px',
+    },
+    gooP: {
+      fontWeight: 'bold',
+      color: 'red'
+    },
+    google: {
+      width: '100%',
+      textAlign: 'center',
+
     }
 
 };
@@ -71,6 +83,7 @@ function App() {
     const [value, onChange] = React.useState(new Date());
     const [modalIsOpen, setIsOpen] = React.useState(false);  
     const [addFriend, setaddFriend] = React.useState(false);  
+    const [googleGet, setgoogleGet] = React.useState(false);
     const [events, setEvents] = React.useState([]);  
     const [follows, setFollows] = React.useState([]);
     const [selectedOption, setSelectedOption] = React.useState(null);
@@ -84,11 +97,6 @@ function App() {
       setFollows(jsonFollows.data);
     }, []);
 
-    function openModal() {
-      setaddFriend(false);
-      setIsOpen(true);
-    }
-
     const animatedComponents = makeAnimated();
 
     //ユーザ選択
@@ -100,6 +108,7 @@ function App() {
       options.push(item);
     });
 
+    //カレンダー更新
     const eventRenew = () => {
       const copy_user_id = user_id.slice(0, user_id.length);
       selectedOption.map((val) => {
@@ -112,13 +121,25 @@ function App() {
       subtitle.style.color = '#f00';
     }
 
+    //Modal関連
+    function openModal() {
+      setIsOpen(true);
+    }
+
     function clickAddFriend(){
       setaddFriend(true);
+      setIsOpen(true);  
+    }
+
+    function clickGoogleGet(){
+      setgoogleGet(true);
       setIsOpen(true);  
     }
   
     function closeModal() {
       setIsOpen(false);
+      setgoogleGet(false);
+      setaddFriend(false);
     }
 
     var info_date = value.getFullYear()+'-'+('0' + (value.getMonth() + 1)).slice(-2)+'-'+('0' + value.getDate()).slice(-2);
@@ -156,8 +177,8 @@ function App() {
               style={styles.selectBox}
             />
             <div style={styles.buttons}>
-              <button className="btn btn-primary" style={styles.userAdd} onClick={clickAddFriend} >友達の追加</button>
-              <button className="btn btn-warning" style={styles.renew} type="submit" onClick={eventRenew}>更新</button>
+              <button className="btn btn-primary button" style={styles.userAdd} onClick={clickAddFriend} >友達の追加</button>
+              <button className="btn btn-warning button" style={styles.renew} type="submit" onClick={eventRenew}>更新</button>
             </div>
           </div>
 
@@ -172,6 +193,11 @@ function App() {
               tileContent={getTileContent}
               />
 
+              <div style={styles.google}>
+                <button className="btn btn-primary" style={styles.goo} type="submit" onClick={clickGoogleGet}>Google Calendarと連携</button>
+                <p style={styles.gooP}>※Google Calendarの一般公開を設定した後、Google Cloud PlatformでのAPIキーの発行が必要となります。</p>
+              </div>
+
           </div>
           <Modal
           onChange={onChange}
@@ -185,19 +211,18 @@ function App() {
             {
               addFriend ? 
               <AddFriend csrf={csrf_token}/> : 
-              <Information
-              user_id={user_id}
-              close={closeModal}
-              csrf={csrf_token}
-              login_id={login_id}
-              date={info_date}
-              value_day={value_day}
-              data={events}
-              />
+                 googleGet ? <GoogleGet csrf={csrf_token}/> : 
+                <Information
+                user_id={user_id}
+                close={closeModal}
+                csrf={csrf_token}
+                login_id={login_id}
+                date={info_date}
+                value_day={value_day}
+                data={events}
+                />
             }
-            
-             
-              
+          
           </Modal>
         </div>
         

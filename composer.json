@@ -6,14 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-intl": "*",
         "barryvdh/laravel-debugbar": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
+        "google/apiclient": "^2.11",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "tightenco/ziggy": "^1.4",
-        "ext-intl": "*"
+        "nesbot/carbon": "^2.53",
+        "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

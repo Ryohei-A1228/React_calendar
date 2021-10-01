@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Sharing-Calendar</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,10 +23,10 @@
     <link href="{{ asset('css/app_plus.css') }}" rel="stylesheet">
 </head>
 <body>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style='background-color: #813906;'>
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Calendar-App
+                    Sharing-Calendar
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -61,6 +61,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Home') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -81,5 +84,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class='footer'>
+        　<p class='copyright'>&copy;RYOHEI ABE 2021</p> 
+        </footer>
 </body>
 </html>
