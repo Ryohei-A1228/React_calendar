@@ -3,7 +3,7 @@
 
 
 # DEMO
-![TOP_DOUGA](https://user-images.githubusercontent.com/87964992/135707366-760bd29f-c073-4ed2-901c-6072bdbb0022.gif)
+![TOP_DOUGA](public\img\TOPpage.gif)
 
 
 # Features
