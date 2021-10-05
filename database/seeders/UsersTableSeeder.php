@@ -23,7 +23,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'りょうた',
                 'email' => 'ryota@example.com',
-                'password' => bcrypt('passwordryota')
+                'password' => bcrypt('passwordryota'),
+                'email_verified_at' => date(2021-10-01)
             ],
             [
                 'name' => 'カズキ',
