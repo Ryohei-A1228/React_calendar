@@ -35,5 +35,5 @@
 
 
 # Note
-・自身ののGoogle calendarとの連携では、Google Calendarにおける一般公開設定が必要。（APIキーは上記のを使用可能）
+・実際に自分のGoogle calendarとの連携においては、Google Calendarにおける一般公開設定が必要。（APIキーは上記のを使用可能）
 
