@@ -1,6 +1,6 @@
 # Sharing-Calendar
-ユーザー間でお互いの予定を共有できるサービス
-
+ユーザー間でお互いの予定を共有できるサービス。
+旅行や飲み会といったお互いの予定合わせに便利。
 
 # DEMO
 ![README3](https://user-images.githubusercontent.com/87964992/135718104-b31f82ab-111f-457e-b47d-2f0dd6b6ba9b.gif)
@@ -10,6 +10,7 @@
 ・メール認証機能付き
 ・ユーザー同士の予定を同時に表示することができる。
 ・GoogleCalendarから本アプリにイベント情報を取り込むことができる。
+・ログインにおけるGoogleアカウント連携
 
 
 # Dependency
@@ -34,4 +35,5 @@
 
 
 # Note
+・自身ののGoogle calendarとの連携では、Google Calendarにおける一般公開設定が必要。（APIキーは上記のを使用可能）
 
