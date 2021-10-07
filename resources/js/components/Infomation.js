@@ -1,5 +1,6 @@
 import React from 'react';
 import './Infomation.css';
+import { EmailShareButton, EmailIcon, LineShareButton, LineIcon, WhatsappShareButton, WhatsappIcon} from 'react-share';
 
 const info_style = {
     headline: {
@@ -40,6 +41,13 @@ const info_style = {
         width:'20%',
         display: 'inline-block',
         textAlign: 'center'
+    },
+    share: {
+        width: '50%',
+        margin: '10px auto',
+        display: 'flex',
+        justifyContent: 'space-around',
+        
     }
 };
 
@@ -47,6 +55,8 @@ function Infomation(props) {
     var events = props.data;
     var logId = props.login_id;
     var csrf_token = props.csrf;
+    const url = location.href;
+    const share_body = props.date + 'について';
 
     return (
         <div>
@@ -58,6 +68,17 @@ function Infomation(props) {
                     : '') } 
                 </form>
             </ul>
+            <div style={info_style.share}>
+                <EmailShareButton url={url} body={share_body} >
+                    <EmailIcon size={50} round/>
+                </EmailShareButton>
+                <LineShareButton url={url} title={share_body} >
+                    <LineIcon size={50} round/>
+                </LineShareButton>
+                <WhatsappShareButton url={url} title={share_body} >
+                    <WhatsappIcon size={50} round/>
+                </WhatsappShareButton>
+            </div>
             <form method="POST" action="/event/add">
                 <h3 style={info_style.headline}>イベント追加</h3>
                 <h5 style={info_style.headline}>{props.date}</h5>
