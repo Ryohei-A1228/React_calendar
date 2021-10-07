@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle']);
+Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
+
 Route::middleware('verified')->group(function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/event/add', [App\Http\Controllers\HomeController::class, 'eventAdd'])->name('event.add');

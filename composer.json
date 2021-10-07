@@ -12,6 +12,7 @@
         "google/apiclient": "^2.11",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
+        "laravel/socialite": "*",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "nesbot/carbon": "^2.53",

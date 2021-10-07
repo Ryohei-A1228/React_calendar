@@ -123,9 +123,9 @@ class HomeController extends Controller
      */
     public function googleEventGet(Request $request, User $user)
     {
-        // 取得したAPIキー??メアドとパスワードで行けるか
+        // 取得したAPIキー
         $api_key = $request->input('api');
-        // カレンダーID??email-address
+        // カレンダーID アドレス
         $calendar_id = urlencode($request->input('email'));
         // データの開始日
         $start = date('2021-01-01\T00:00:00\Z');
@@ -145,7 +145,6 @@ class HomeController extends Controller
         $results = [];
         if ($data = file_get_contents($url. http_build_query($query), true)) {
             $data = json_decode($data);
-            //dd($data);
             foreach ($data->items as $row) {
                 // 終日予定はdateプロパティ、時刻指定はdateTimeプロパティにデータがはいっている
                 $start = new DateTime(property_exists($row->start,'date')?$row->start->date:$row->start->dateTime);
