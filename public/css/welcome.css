@@ -1,60 +1,41 @@
-.explanation {
+.contents-bg, .contents, .contents h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.contents-bg {
+  background-image: url(../img/point.jpeg);
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+}
+
+.contents {
+  background-color: rgba(0,0,0,0.6);
   width: 100%;
-  background-color: rgb(255, 197, 7);
-  text-align: center;
-}
-
-.explanation h3{
-  color: rgb(0, 0, 0);
-  display: block;
-}
-
-.demo {
+  height: 700px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;  
 }
 
-.GIF {
-  width: 50%;
-  height: auto;
-  display: block;
-  margin-bottom: 20px;
-  border: solid 5px darkorange;
+.text {
+  margin: 0 auto;
+  width: 80%;  
 }
 
-.howTo {
-  width: 25%;
-  height: auto;
-  display:flex;
-  flex-flow: column;
-  justify-content:space-around;
-}
-
-.function {
-  color: rgb(0, 0, 0);
+.headline {
+  color: #fff;
   font-size: 30px;
-  display: block;
+  text-align: center;
+  word-wrap: break-word;  
 }
 
 @media screen and (max-width: 500px) {
-  .demo {
-    display: block;
+  .contents-bg, .contents{
+    height: 500px;
   }
-
-
-  .GIF {
-    width: 95%;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px;
-    border: solid 5px darkorange;
-  }
-
-  .howTo {
-    width: 95%;
-    margin: 0 auto 20px;
-    height: auto;
-    flex-flow: column;
-    justify-content:space-around;
+  .headline {
+    font-size: 15px;
   }
 }
