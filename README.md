@@ -15,13 +15,10 @@
 
 
 # Dependency
-- React
+- React 17.0.2
 - PHP 8.0.7
 - Laravel 6.0
-- PostgreSQL
-- Bootstrap
-- Heroku
-
+- Bootstrap 4.6.0
 
 # Usage
 - https://sharing-calendar.herokuapp.com/ にアクセス
