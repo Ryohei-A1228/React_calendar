@@ -55,7 +55,7 @@ user_id, title, date, start_time, end_time,
 user_id, user_following_id
 
 ユーザー対イベント 1対N
-
+ユーザー対フォロー 1対1
 
 ### 自己評価
 70点
